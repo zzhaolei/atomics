@@ -2,4 +2,5 @@
 members = [
     "spin-lock",
     "channel",
+    "arc",
 ]
