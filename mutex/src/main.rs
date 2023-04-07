@@ -1,4 +1,4 @@
-use atomic_wait::{wait, wake_all, wake_one};
+use atomic_wait::{wait, wake_one};
 use std::cell::UnsafeCell;
 use std::ops::{Deref, DerefMut};
 use std::sync::atomic::AtomicU32;
@@ -17,7 +17,6 @@ unsafe impl<T> Sync for Mutex<T> where T: Send {}
 
 impl<T> Mutex<T> {
     pub fn new(val: T) -> Self {
-        let a: Result<(), ()>;
         Self {
             state: AtomicU32::new(0),
             value: UnsafeCell::new(val),
